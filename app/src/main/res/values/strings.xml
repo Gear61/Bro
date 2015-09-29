@@ -3,4 +3,8 @@
     <string name="search">Search friends</string>
     <string name="clear_icon">fa-remove</string>
     <string name="user_icon">fa-user</string>
+
+    <string name="confirm_bro">Confirm Bro</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>
