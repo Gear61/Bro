@@ -1,16 +1,53 @@
 package randomappsinc.com.bro;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
+import android.telephony.SmsManager;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnItemClick;
+import butterknife.OnTextChanged;
+
+public class MainActivity extends Activity {
+    @Bind(R.id.search_input) EditText searchInput;
+    @Bind(R.id.friends) ListView friends;
+
+    private FriendsAdapter friendsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        friendsAdapter = new FriendsAdapter(this);
+        friends.setAdapter(friendsAdapter);
+    }
+
+    @OnClick(R.id.clear_icon)
+    public void clearSearch(View view) {
+        searchInput.setText("");
+    }
+
+    @OnTextChanged(value = R.id.search_input, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    public void updateWithPrefix(Editable editable) {
+        friendsAdapter.updateContentWithPrefix(editable.toString());
+    }
+
+    @OnItemClick(R.id.friends)
+    public void onItemClick(AdapterView<?> adapterView, View view, final int position, long id) {
+        Friend friend = friendsAdapter.getItem(position);
+        SmsManager.getDefault().sendTextMessage(friend.getPhoneNumber(), null, "Bro", null, null);
+        Toast.makeText(this, "You have bro-ed " + friend.getFriendName() + ".", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -22,16 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 }

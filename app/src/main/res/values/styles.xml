@@ -1,8 +1,8 @@
 <resources>
-
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="@android:style/Theme.Holo.Light">
         <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">18sp</item>
     </style>
-
 </resources>
