@@ -8,44 +8,37 @@
     android:padding="10dp"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="35dp">
 
         <EditText
             android:id="@+id/search_input"
-            android:background="@android:color/transparent"
-            android:paddingRight="30dp"
+            android:background="@drawable/edittext_background"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="32dp"
             android:textSize="18sp"
             android:hint="@string/search"
             android:singleLine="true"
             android:imeOptions="actionDone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"/>
 
         <com.beardedhen.androidbootstrap.FontAwesomeText
             android:id="@+id/clear_icon"
-            android:paddingBottom="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_alignBaseline="@+id/search_input"
-            android:layout_alignParentRight="true"
             android:gravity="center"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
             fontawesometext:fa_icon="@string/clear_icon"
             android:textSize="22sp" />
-
-        <View
-            android:layout_below="@+id/search_input"
-            android:layout_marginTop="2dp"
-            android:background="@color/blue"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"/>
-    </RelativeLayout>
+    </FrameLayout>
 
     <ListView
         android:id="@+id/friends"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>

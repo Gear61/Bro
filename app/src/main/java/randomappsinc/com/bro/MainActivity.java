@@ -1,7 +1,7 @@
 package randomappsinc.com.bro;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.text.Editable;
 import android.view.Menu;
@@ -21,7 +21,7 @@ import butterknife.OnClick;
 import butterknife.OnItemClick;
 import butterknife.OnTextChanged;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     @Bind(R.id.search_input) EditText searchInput;
     @Bind(R.id.friends) ListView friends;
 
