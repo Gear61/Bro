@@ -49,14 +49,14 @@ public class FriendsAdapter extends BaseAdapter {
         final ViewHolder holder;
         if (view == null) {
             LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = vi.inflate(R.layout.friend_cell, parent, false);
-            holder = new ViewHolder();
-            view.setTag(holder);
+            // view = vi.inflate(R.layout.friend_cell, parent, false);
+            // holder = new ViewHolder();
+            // view.setTag(holder);
         }
         else {
             holder = (ViewHolder) view.getTag();
         }
-        holder.friendName.setText(friends.get(position).getFriendName());
+        // holder.friendName.setText(friends.get(position).getFriendName());
         return view;
     }
 }
