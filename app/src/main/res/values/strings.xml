@@ -7,4 +7,7 @@
     <string name="confirm_bro">Confirm Bro</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+
+    <string name="feedback_subject">Bro for Android Feedback</string>
+    <string name="send_email">Send email</string>
 </resources>
