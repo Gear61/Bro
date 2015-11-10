@@ -9,9 +9,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 /**
  * Created by Alex Chiou on 9/29/15.
  */
@@ -47,10 +44,10 @@ public class FriendsAdapter extends BaseAdapter {
     }
 
     public static class ViewHolder {
-        @Bind(R.id.friend_name) TextView friendName;
+        TextView friendName;
 
         public ViewHolder(View view) {
-            ButterKnife.bind(this, view);
+            friendName = (TextView) view.findViewById(R.id.friend_name);
         }
     }
 

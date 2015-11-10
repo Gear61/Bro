@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fontawesometext="http://schemas.android.com/apk/res-auto"
     android:padding="10dp"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.beardedhen.androidbootstrap.FontAwesomeText
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        fontawesometext:fa_icon="@string/user_icon"
-        android:textSize="40sp" />
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/person_icon" />
 
     <TextView
         android:id="@+id/friend_name"
+        android:textSize="18sp"
         android:textColor="@color/black"
         android:layout_marginLeft="10dp"
         android:layout_gravity="center_vertical"
