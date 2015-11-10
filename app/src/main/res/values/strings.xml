@@ -1,12 +1,10 @@
 <resources>
-    <string name="app_name">Bro</string>
+    <string name="app_name">Bro Super Finished</string>
     <string name="search">Search friends</string>
-    <string name="clear_icon">fa-remove</string>
-    <string name="user_icon">fa-user</string>
+    <string name="clear_icon">{fa-remove}</string>
+    <string name="user_icon">{fa-user}</string>
 
     <string name="confirm_bro">Confirm Bro</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
 
     <string name="feedback_subject">Bro for Android Feedback</string>
     <string name="send_email">Send email</string>
