@@ -1,20 +1,26 @@
 package randomappsinc.com.bro;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.telephony.SmsManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText searchInput;
     ListView contacts;
 
-    FriendsAdapter adapter;
+    FriendsAdapter friendsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
         searchInput.addTextChangedListener(searchInputListener);
         contacts = (ListView) findViewById(R.id.contacts);
 
-        adapter = new FriendsAdapter(this);
-        contacts.setAdapter(adapter);
+        friendsAdapter = new FriendsAdapter(this);
+        contacts.setAdapter(friendsAdapter);
+        contacts.setOnItemClickListener(friendsListListener);
     }
 
     TextWatcher searchInputListener = new TextWatcher() {
@@ -38,9 +45,48 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            adapter.updateContentWithPrefix(s.toString());
+            friendsAdapter.updateContentWithPrefix(s.toString());
         }
     };
+
+    AdapterView.OnItemClickListener friendsListListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3)
+        {
+            Friend friend = friendsAdapter.getItem(position);
+            showConfirmationDialog(friend);
+        }
+    };
+
+    public void showConfirmationDialog(final Friend friend) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        alertDialogBuilder.setTitle("Confirm Bro");
+        String message = "Are you sure you want to Bro " + friend.getName() + "?";
+
+        // Set dialog message and buttons
+        alertDialogBuilder
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        SmsManager.getDefault().sendTextMessage(friend.getPhoneNumber(), null, "Bro", null, null);
+                        Toast.makeText(MyApplication.getAppContext(), "You bro-ed " + friend.getName() + ".", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        // Create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // Show it
+        alertDialog.show();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
