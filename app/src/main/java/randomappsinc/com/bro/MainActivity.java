@@ -2,6 +2,8 @@ package randomappsinc.com.bro;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -12,14 +14,33 @@ public class MainActivity extends AppCompatActivity {
     EditText searchInput;
     ListView contacts;
 
+    FriendsAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         searchInput = (EditText) findViewById(R.id.search_input);
+        searchInput.addTextChangedListener(searchInputListener);
         contacts = (ListView) findViewById(R.id.contacts);
+
+        adapter = new FriendsAdapter(this);
+        contacts.setAdapter(adapter);
     }
+
+    TextWatcher searchInputListener = new TextWatcher() {
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            adapter.updateContentWithPrefix(s.toString());
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

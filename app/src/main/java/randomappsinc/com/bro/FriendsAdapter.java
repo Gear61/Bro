@@ -21,6 +21,7 @@ public class FriendsAdapter extends BaseAdapter {
     public FriendsAdapter(Context context) {
         super();
         this.context = context;
+        this.friends = FriendManager.getInstance().getFriends();
     }
 
     @Override
@@ -42,21 +43,27 @@ public class FriendsAdapter extends BaseAdapter {
         TextView friendName;
 
         public ViewHolder(View view) {
+            friendName = (TextView) view.findViewById(R.id.contact_name);
         }
+    }
+
+    public void updateContentWithPrefix(String prefix) {
+        this.friends = FriendManager.getInstance().matchPrefix(prefix);
+        notifyDataSetChanged();
     }
 
     public View getView(int position, View view, ViewGroup parent) {
         final ViewHolder holder;
         if (view == null) {
             LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            // view = vi.inflate(R.layout.friend_cell, parent, false);
-            // holder = new ViewHolder();
-            // view.setTag(holder);
+            view = vi.inflate(R.layout.contact_cell, parent, false);
+            holder = new ViewHolder(view);
+            view.setTag(holder);
         }
         else {
             holder = (ViewHolder) view.getTag();
         }
-        // holder.friendName.setText(friends.get(position).getFriendName());
+        holder.friendName.setText(friends.get(position).getName());
         return view;
     }
 }

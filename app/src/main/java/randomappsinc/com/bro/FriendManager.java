@@ -20,9 +20,24 @@ public class FriendManager {
 
     private FriendManager() {
         this.friends = PhoneBookUtils.getPhoneFriends();
+        Collections.sort(this.friends);
     }
 
     public List<Friend> getFriends() {
         return friends;
+    }
+
+    public List<Friend> matchPrefix(String prefix) {
+        if (prefix.isEmpty()) {
+            return friends;
+        }
+        List<Friend> friendMatches = new ArrayList<>();
+        String cleanPrefix = prefix.toLowerCase();
+        for (Friend friend : this.friends) {
+            if (friend.getName().toLowerCase().startsWith(cleanPrefix)) {
+                friendMatches.add(friend);
+            }
+        }
+        return friendMatches;
     }
 }
