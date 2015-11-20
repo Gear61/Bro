@@ -6,8 +6,17 @@
     android:layout_height="wrap_content"
     android:padding="10dp">
 
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/person_icon"/>
+
     <TextView
         android:id="@+id/contact_name"
+        android:layout_marginLeft="5dp"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:layout_gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

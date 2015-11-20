@@ -5,12 +5,32 @@
     android:layout_height="match_parent"
     android:padding="10dp">
 
-    <EditText
-        android:id="@+id/search_input"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:imeOptions="actionDone"/>
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/search_input"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="35dp"
+            android:hint="Search"
+            android:background="@drawable/edittext_border"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:imeOptions="actionDone"/>
+
+        <ImageView
+            android:id="@+id/clear_icon"
+            android:layout_margin="5dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="right|center_vertical"
+            android:src="@drawable/clear_icon"/>
+
+    </FrameLayout>
 
     <ListView
         android:id="@+id/contacts"
